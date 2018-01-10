@@ -2,9 +2,11 @@ classdef Molecule
     properties
         on
         trajectory
+        coords
+        UID
     end
     methods
-        function m = Molecule(nsteps)
+        function m = Molecule(nsteps,UID)
             on = 1;
             m.trajectory = zeros(nsteps,1);
             t = 0;
