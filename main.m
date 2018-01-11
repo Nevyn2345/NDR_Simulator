@@ -4,12 +4,15 @@ equilibrium = 0.0005;
 %%%
 %%%%%
 
-nframes = 4000;
 nmols = 5000;
-coords = CreatePattern(nmols);
-coords(:,3) = 0;
-coords(:,4) = 0;
-coords(:,5) = 0;
+nframes = 4000;
+mols = MolStore(500,nframes);
+mols = gencoords(mols)
+
+% coords = CreatePattern(nmols);
+% coords(:,3) = 0;
+% coords(:,4) = 0;
+% coords(:,5) = 0;
 camera_params.height = 140;
 camera_params.width = 140;
 zyla_rms = 1.38; %variation in zyla noise
@@ -20,7 +23,7 @@ camera_params.NDR_noiseInc = 10/100; % average noise increase per frame based on
 camera_params.NDR_rms = 2; % STDev of a single frame at the start of a reset
 camera_params.reset = 100;
 
-maxA = 100; %photons per blink, spread over many frames
+maxA = 10; %photons per blink, spread over many frames
 
 zyla_camera = 0;
 NDR_camera = 1;
@@ -29,7 +32,8 @@ if zyla_camera == 1
     [ sensor_zyla ] = Zyla( coords, sensorwidth, sensorheight, zyla_rms, zyla_floor, maxA, nframes, equilibrium );
 end
 if NDR_camera == 1
-    [ sensor_NDR ] = NDR( camara_params, coords, nframes, maxA, equilibrium );
+    %[ sensor_NDR ] = NDR2( camera_params, coords, nframes, maxA, equilibrium );
+    [ sensor ] = NDR( camera_params, mols, nframes, maxA );
 end
 %%
 % save data
