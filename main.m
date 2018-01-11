@@ -32,7 +32,6 @@ if zyla_camera == 1
     [ sensor_zyla ] = Zyla( coords, sensorwidth, sensorheight, zyla_rms, zyla_floor, maxA, nframes, equilibrium );
 end
 if NDR_camera == 1
-    %[ sensor_NDR ] = NDR2( camera_params, coords, nframes, maxA, equilibrium );
     [ sensor ] = NDR( camera_params, mols, nframes, maxA );
 end
 %%

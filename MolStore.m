@@ -9,9 +9,9 @@ classdef MolStore
         function obj = CreateMolStore(obj, N, nframes)
             for i = 1:N
                 if ~isempty(obj.array)
-                    obj.array(end+1) = Molecule(nframes);
+                    obj.array(end+1) = Molecule(nframes,i);
                 else
-                    obj.array = Molecule(nframes);
+                    obj.array = Molecule(nframes,i);
                 end
             end
         end
